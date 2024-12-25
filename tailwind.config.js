@@ -39,7 +39,14 @@ module.exports = {
       ...colors,
     },
     extend: {
-      colors: {}
+      colors: {
+        primary: '#0E9E73',
+        secondary: '#153E66',
+        cardinal: '#C1272D',
+        mangoOrange: '#F7863F',
+        halfBaked: '#7EC8DC',
+        davyGrey: '#54585C'
+      }
     },
   },
   plugins: [

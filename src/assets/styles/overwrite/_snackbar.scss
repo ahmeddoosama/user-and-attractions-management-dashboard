@@ -1,0 +1,64 @@
+.app-notification {
+  &.mat-mdc-snack-bar-container {
+    &.success-notification {
+      .mdc-snackbar__surface {
+        @apply bg-primary;
+      }
+
+      .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+        @apply text-white;
+      }
+    }
+
+    &.error-notification {
+      .mdc-snackbar__surface {
+        @apply bg-cardinal;
+      }
+
+      .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+        @apply text-white;
+      }
+    }
+
+    &.warning-notification {
+      .mdc-snackbar__surface {
+        @apply bg-mangoOrange;
+      }
+
+      .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+        @apply text-white;
+      }
+    }
+
+    &.info-notification {
+      .mdc-snackbar__surface {
+        @apply bg-secondary;
+      }
+
+      .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+        @apply text-white;
+      }
+    }
+
+    .mdc-snackbar__surface {
+      @apply rounded-md;
+    }
+
+    .mat-mdc-snack-bar-label {
+      @apply text-white;
+    }
+
+    .mdc-button {
+      @apply text-white;
+    }
+  }
+}
+
+.error-notification {
+  background-color: #f44336;
+  color: white;
+
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}
