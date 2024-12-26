@@ -1,0 +1,21 @@
+:host {
+  .mat-icon {
+    height: 1.25rem !important;
+    width: 1.25rem !important;
+  }
+
+  .material-icons {
+    @apply text-xl leading-[1];
+  }
+
+  .mat-mdc-progress-spinner {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  ::ng-deep {
+    .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+      @apply stroke-secondary;
+    }
+  }
+}

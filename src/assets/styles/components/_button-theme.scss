@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+@mixin custom-button-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  .mat-mdc-raised-button {
+    height: 44px !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    font-size: 16px !important;
+
+    &:not(:disabled) {
+      background-color: #153E66 !important;
+      color: white !important;
+
+      &:hover {
+        background-color: darken(#153E66, 2%) !important;
+      }
+    }
+
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.12) !important;
+      color: rgba(0, 0, 0, 0.38) !important;
+    }
+  }
+}

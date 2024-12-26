@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+@mixin custom-form-theme($theme) {
+  .mat-mdc-form-field {
+    .mdc-text-field {
+      @apply p-0;
+    }
+
+    .mdc-text-field--filled {
+      @apply h-14;
+    }
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      @apply bg-transparent;
+
+      &.mdc-text-field--focused {
+        .mdc-floating-label,
+        .mdc-floating-label--float-above {
+          @apply text-secondary;
+        }
+      }
+
+      .mdc-text-field__input {
+        @apply caret-secondary;
+      }
+
+      .mdc-line-ripple::after {
+        @apply border-b-secondary;
+      }
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+      @apply hidden;
+    }
+
+    .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+      @apply p-0;
+    }
+  }
+}

@@ -1,1 +1,68 @@
-<p>login works!</p>
+<section class="h-full bg-porcelain flex flex-col items-center justify-center p-6">
+  <div
+    class="p-4 h-screen-minus-20 w-full flex items-center justify-center flex-col gap-4 bg-white border border-lavenderMist rounded-lg shadow-card">
+    <div class="flex items-center flex-col gap-2">
+      <h2 class="text-ebonyClay text-4xl font-bold">Login</h2>
+      <p class="text-center text-davyGrey">Please enter your email and password to login.</p>
+    </div>
+
+    <form class="w-full md:w-96 flex flex-col items-center justify-center" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="username" placeholder="Enter your email">
+        @if (username?.invalid && (username?.dirty || username?.touched)) {
+        <mat-error>
+          @if (username?.errors?.['required']) {
+          <span>Email is required</span>
+          }
+          @if (username?.errors?.['username']) {
+          <span>Invalid email format</span>
+          }
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password"
+          formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        @if (password?.invalid && (password?.dirty || password?.touched)) {
+        <mat-error>
+          @if (password?.errors?.['required']) {
+          <span>Password is required</span>
+          }
+          @if (password?.errors?.['minlength']) {
+          <span>Password must be at least 6 characters</span>
+          }
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <button class="mt-4" mat-raised-button [disabled]="form.invalid || isLoading">
+        @if (isLoading) {
+        <mat-spinner strokeWidth="10"></mat-spinner>
+        } @else {
+        <span>Login</span>
+        }
+      </button>
+    </form>
+
+    <div class="flex items-center flex-col gap-1 mt-5">
+      <h2 class="text-gray-500">Account for testing</h2>
+      <div class="flex items-center gap-2">
+        <p class="text-sm md:text-base text-gray-500">Uername: karn.yong&#64;melivecode.com</p>
+        <mat-icon class="cursor-pointer" (click)="copyUsername()">content_copy</mat-icon>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <p class="text-sm md:text-base text-gray-500">Password: melivecode</p>
+        <mat-icon class="cursor-pointer" (click)="copyPassword()">content_copy</mat-icon>
+      </div>
+    </div>
+  </div>
+</section>

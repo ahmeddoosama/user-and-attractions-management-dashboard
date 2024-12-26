@@ -1,6 +1,8 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+@use './assets/styles/components/form-theme' as form;
+@use './assets/styles/components/button-theme' as button;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -33,6 +35,8 @@ $user-and-attractions-management-dashboard-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($user-and-attractions-management-dashboard-theme);
+@include form.custom-form-theme($user-and-attractions-management-dashboard-theme);
+@include button.custom-button-theme($user-and-attractions-management-dashboard-theme);
 
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
@@ -40,7 +44,6 @@ $user-and-attractions-management-dashboard-theme: mat.define-light-theme((
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Helvetica Neue", sans-serif; }
 
 @import './assets/styles/main';
-@import 'assets/styles/overwrite/snackbar';

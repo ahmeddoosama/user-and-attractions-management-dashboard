@@ -93,10 +93,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (
    * @returns An Observable that errors with the original error
    */
   function showError(error: HttpErrorResponse, errorMessage: string) {
-    notification.error(errorMessage, {
-      duration: 3500,
-      panelClass: ['error-notification']
-    });
+    notification.error(errorMessage);
     return throwError(() => error);
   }
 
@@ -109,9 +106,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (
       storageService.logout();
       setTimeout(() => {
         router.navigateByUrl('/auth/login');
-        notification.error('Your session has expired. Please log in again.', {
-          duration: 3500
-        });
+        notification.error('Your session has expired. Please log in again.');
       }, 100);
     }
   }

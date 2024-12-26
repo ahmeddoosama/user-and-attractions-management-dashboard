@@ -45,7 +45,17 @@ module.exports = {
         cardinal: '#C1272D',
         mangoOrange: '#F7863F',
         halfBaked: '#7EC8DC',
-        davyGrey: '#54585C'
+        porcelain: '#EDF1F7',
+        lavenderMist: '#e4e9f2',
+        davyGrey: '#54585C',
+        ebonyClay: '#26283B',
+        santaGray: '#99a5af'
+      },
+      boxShadow: {
+        'card': '0px 2px 4px -2px #10182805'
+      },
+      height: {
+        'screen-minus-20': 'calc(100vh - 5rem)'
       }
     },
   },

@@ -6,6 +6,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { httpTokenInterceptor } from '@core/interceptors/http-token/http-token.interceptor';
+import { httpErrorInterceptor } from '@core/interceptors/http-error/http-error.interceptor';
+import { StorageService } from '@core/services/app-services/storage/storage.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +17,9 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(BrowserModule),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(
-      withFetch()
+      withFetch(),
+      withInterceptors([httpTokenInterceptor, httpErrorInterceptor])
     ),
+    StorageService,
   ]
 };
