@@ -1,0 +1,30 @@
+<header class="bg-white flex items-center justify-between p-4 shadow-sm">
+  <div class="flex items-center gap-2">
+    <button mat-button class="toggle-sidebar-btn" (click)="toggleSidebar()">
+      <div class="text-davyGrey text-2xl flex items-center justify-center">
+        <mat-icon>menu</mat-icon>
+      </div>
+    </button>
+    <h1 class="block md:hidden cursor-pointer text-primary tracking-widest text-lg uppercase font-semibold">
+      WhiteHelmet
+    </h1>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <button class="flex items-center gap-2" [matMenuTriggerFor]="menu">
+      <img [src]="admin?.avatar" [alt]="admin?.fname + ' ' + admin?.lname" class="w-10 h-10 rounded-full" />
+      <span class="hidden md:block">{{ admin?.fname }} {{ admin?.lname }}</span>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="mt-2">
+      <button mat-menu-item (click)="navigateTo('/profile')">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>

@@ -1,0 +1,50 @@
+<div
+  class="overlay"
+  [class.active]="isMobileOpen$ | async"
+  (click)="sidebarService.closeMobile()"
+></div>
+
+<aside
+  class="sidebar"
+  [class.expanded]="isExpanded$ | async"
+  [class.mobile-open]="isMobileOpen$ | async">
+  <div class="flex items-center justify-start gap-2 px-4">
+    <div class="flex items-center justify-center text-secondary text-2xl">
+      <mat-icon>leaderboard</mat-icon>
+    </div>
+    @if (isExpanded$ | async) {
+      <h1 class="cursor-pointer text-primary tracking-widest text-lg uppercase font-semibold">
+        WhiteHelmet
+      </h1>
+    }
+  </div>
+
+
+  <!--
+    TODO: Handle this feature in the future
+    ? Developer Joke: Why do programmers prefer dark mode? Because light attracts bugs ;)
+  -->
+  <div class="px-4 mt-7 cursor-pointer" (click)="toggleSidebar()">
+    <mat-form-field class="w-full">
+      <mat-label>Filter menu</mat-label>
+      <mat-icon matTextPrefix class="mr-2">filter_list</mat-icon>
+      <input matInput type="text" placeholder="Filter menu" />
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col gap-2">
+
+    @for (tab of tabs; track tab.title) {
+    <div class="flex items-center justify-start gap-2 px-4 py-2 hover:bg-lavenderMist rounded-lg cursor-pointer"
+      [class.bg-lavenderMist]="isActive(tab.path)" (click)="navigateTo(tab.path)">
+      <div class="flex items-center justify-center text-secondary text-2xl" [class.!text-primary]="isActive(tab.path)">
+        <mat-icon>{{ tab.icon }}</mat-icon>
+      </div>
+      @if (isExpanded$ | async) {
+      <span class="text-secondary text-base font-medium" [class.!text-primary]="isActive(tab.path)">{{ tab.title
+        }}</span>
+      }
+    </div>
+    }
+  </div>
+</aside>
