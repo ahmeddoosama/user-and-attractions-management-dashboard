@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { IUser } from '@core/interfaces/auth/auth.interface';
+import { IUser } from '@core/interfaces/auth.interface';
 import { StorageService } from '@core/services/app-services/storage/storage.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAuthModel, IAuthResponse } from '@core/interfaces/auth/auth.interface';
+import { IAuthModel, IAuthResponse } from '@core/interfaces/auth.interface';
 import { Auth } from '@core/models/auth/auth.class';
 import { CoreRequestService } from '@core/services/api-services/core-request/core-request.service';
 import { Observable } from 'rxjs';

@@ -1,12 +1,12 @@
-<main class="relative w-full h-full">
+<main class="bg-porcelain relative w-full h-full">
   @if(isAuthRoute) {
   <router-outlet></router-outlet>
   } @else {
   <div class="grid grid-cols-12">
-    <div class="hidden md:block col-span-2">
+    <div class="hidden md:block col-span-3">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-span-12 md:col-span-10">
+    <div class="col-span-12 md:col-span-9">
       <app-header></app-header>
       <router-outlet></router-outlet>
       <app-footer></app-footer>

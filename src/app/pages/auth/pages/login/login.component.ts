@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '@core/services/app-services/auth/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { StorageService } from '@core/services/app-services/storage/storage.service';
-import { IAuthModel, IAuthResponse } from '@core/interfaces/auth/auth.interface';
+import { IAuthModel, IAuthResponse } from '@core/interfaces/auth.interface';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { NotificationService } from '@core/services/app-services/notification/notification.service';
