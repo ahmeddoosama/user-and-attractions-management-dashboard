@@ -1,0 +1,11 @@
+:host {
+  ::ng-deep {
+    .form-spinner {
+      width: 20px !important;
+      height: 20px !important;
+    }
+    .form-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+      @apply stroke-secondary;
+    }
+  }
+}

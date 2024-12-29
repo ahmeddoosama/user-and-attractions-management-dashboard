@@ -1,0 +1,24 @@
+.action-button {
+  color: #FFF !important;
+  background-color: #0E9E73 !important;
+
+  & > .mat-icon {
+    height: 24px !important;
+    width: 24px !important;
+    font-size: 24px !important;
+  }
+}
+
+.confirmation-dialog {
+  max-width: 100% !important;
+  @media (min-width: 768px) {
+    min-width: 400px !important;
+  }
+  min-height: 200px !important;
+}
+
+.create-edit-user-dialog {
+  @media (max-width: 767px) {
+    width: 100% !important;
+  }
+}

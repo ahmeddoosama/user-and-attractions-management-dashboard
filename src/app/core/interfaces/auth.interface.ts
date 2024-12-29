@@ -11,6 +11,13 @@ export interface IAuthResponse {
     user: IUser;
 }
 
+export interface IUsersResponse {
+  data: IUser[];
+  total: number;
+  page: number;
+  per_page: number;
+}
+
 export interface IUser {
     id: number;
     fname: string;

@@ -1,4 +1,4 @@
-export interface Tap {
+export interface Tab {
   title: string;
   icon: string;
   path: string;

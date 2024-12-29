@@ -1,0 +1,9 @@
+<section class="shadow-container bg-white border-lavenderMist rounded-md h-full">
+  <div class="flex items-center justify-between p-4 border-b border-b-lavenderMist">
+    <h1 class="text-lg uppercase font-medium text-secondary">
+      {{ (activeTab$ | async)?.title }}
+    </h1>
+    <ng-content select="[actions]"></ng-content>
+  </div>
+  <ng-content></ng-content>
+</section>
