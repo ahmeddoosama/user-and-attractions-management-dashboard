@@ -9,10 +9,16 @@
   }
 }
 
-.cdk-overlay-pane.mat-mdc-dialog-panel {
+.confirmation-dialog {
   max-width: 100% !important;
   @media (min-width: 768px) {
     min-width: 400px !important;
   }
   min-height: 200px !important;
+}
+
+.create-edit-user-dialog {
+  @media (max-width: 767px) {
+    width: 100% !important;
+  }
 }

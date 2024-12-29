@@ -21,6 +21,7 @@ import {
   MatDialogContent,
 } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
+import { CreateEditUserComponent } from './components/create-edit-user/create-edit-user.component';
 
 const MODULES = [FormsModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatMenuModule];
 const COMPONENTS = [ContainerComponent];
@@ -33,7 +34,7 @@ const COMPONENTS = [ContainerComponent];
   styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['avatar', 'name', 'username', 'actions'];
+  displayedColumns: string[] = ['avatar', 'name', 'username', 'actions'] as const;
   dataSource!: MatTableDataSource<IUser>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -140,8 +141,20 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  editUser(user: IUser): void {
-    console.log(user);
+  userDialog(type: 'create' | 'edit', user?: IUser): void {
+    const dialogRef = this.dialog.open(CreateEditUserComponent, {
+      data: {
+        type: type,
+        user: user
+      },
+      panelClass: 'create-edit-user-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.getUsers();
+      }
+    });
   }
 
   confirmDelete(user: IUser): void {
@@ -149,7 +162,8 @@ export class UsersComponent implements OnInit {
       data: {
         title: 'Delete User',
         message: 'Are you sure you want to delete this user?',
-      }
+      },
+      panelClass: 'confirmation-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

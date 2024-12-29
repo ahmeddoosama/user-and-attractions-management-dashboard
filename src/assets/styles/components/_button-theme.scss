@@ -45,4 +45,17 @@
       }
     }
   }
+
+  .confirm-button {
+    background-color: 0E9E73 !important;
+    color: white !important;
+    &:not(:disabled) {
+      background-color: #0E9E73 !important;
+      color: white !important;
+
+      &:hover {
+        background-color: darken(#0E9E73, 2%) !important;
+      }
+    }
+  }
 }
