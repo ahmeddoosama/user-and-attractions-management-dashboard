@@ -1,11 +1,13 @@
-import { Component, inject, HostListener } from '@angular/core';
+import { Component, inject, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Tap } from '@core/interfaces/layout.interface';
+import { Tab } from '@core/interfaces/layout.interface';
 import { SidebarService } from '@core/services/app-changes/sidebar.service';
+import { ActiveTabService } from '@core/services/app-changes/active-tab.service';
+import { Subscription } from 'rxjs';
 
 const enum Routes {
   Dashboard = '/dashboard',
@@ -29,11 +31,13 @@ const MODULES = [
   styleUrl: './sidebar.component.scss'
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit, OnDestroy {
   private readonly router: Router = inject(Router);
+  readonly activeTabService = inject(ActiveTabService);
   readonly sidebarService = inject(SidebarService);
+  private routerSubscription?: Subscription;
 
-  readonly tabs: Tap[] = [
+  readonly tabs: Tab[] = [
     { title: 'Dashboard', icon: 'dashboard', path: Routes.Dashboard },
     { title: 'Users', icon: 'people', path: Routes.Users },
     { title: 'Attractions', icon: 'attractions', path: Routes.Attractions }
@@ -54,9 +58,35 @@ export class SidebarComponent {
     }
   }
 
+  ngOnInit() {
+    // Subscribe to route changes
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.setActiveTabFromRoute();
+      }
+    });
+  }
+
+  // Set initial active tab
+  private setActiveTabFromRoute(): void {
+    const currentPath = this.router.url;
+    const activeTab = this.tabs.find(tab => tab.path === currentPath) || this.tabs[0];
+    this.activeTabService.setActiveTab(activeTab);
+  }
+
   /** Check if the given path is currently active */
   isActive(path: string): boolean {
     return this.router.url === path;
+  }
+
+  changeActiveTab(tab: Tab): void {
+    this.router.navigate([tab.path]);
+
+    if (window.innerWidth <= 768) {
+      this.sidebarService.closeMobile();
+    }
+
+    this.activeTabService.setActiveTab(tab);
   }
 
   /**
@@ -85,5 +115,9 @@ export class SidebarComponent {
         this.sidebarService.toggleMobile();
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription?.unsubscribe();
   }
 }

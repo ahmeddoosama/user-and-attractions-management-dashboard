@@ -52,7 +52,8 @@ module.exports = {
         santaGray: '#99a5af'
       },
       boxShadow: {
-        'card': '0px 2px 4px -2px #10182805'
+        'card': '0px 2px 4px -2px #10182805',
+        'container': 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'
       },
       height: {
         'screen-minus-20': 'calc(100vh - 5rem)'

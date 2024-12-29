@@ -1,0 +1,23 @@
+:host {
+  ::ng-deep {
+    .search-input {
+      @apply pb-4;
+      .mdc-text-field--filled {
+        @apply h-[50px];
+      }
+
+      .mat-mdc-form-field-subscript-wrapper {
+        @apply hidden;
+      }
+
+      .mat-icon {
+        width: 20px !important;
+        height: 20px !important;
+      }
+
+      .material-icons {
+        font-size: 20px !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+@mixin custom-table-theme($theme) {
+
+  table {
+    width: 100%;
+  }
+
+  .mat-elevation-z8 {
+    @apply shadow-none m-4 border border-lavenderMist rounded-md overflow-hidden;
+  }
+
+  .mat-mdc-paginator-container {
+    @apply border-t border-lavenderMist;
+  }
+
+  .mat-mdc-paginator-outer-container {
+    .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+      @apply px-3;
+    }
+  }
+
+  .mat-mdc-paginator .mat-mdc-select-value {
+    @apply text-sm;
+  }
+}
