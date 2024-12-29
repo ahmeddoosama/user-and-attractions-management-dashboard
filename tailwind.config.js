@@ -4,7 +4,9 @@ const colors = require("tailwindcss/colors");
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
   theme: {
     container: {
       center: true,
@@ -60,10 +62,5 @@ module.exports = {
       }
     },
   },
-  plugins: [
-    plugin(function({ addComponents  }) {
-      addComponents({
-      })
-    })
-  ],
+  plugins: [],
 }

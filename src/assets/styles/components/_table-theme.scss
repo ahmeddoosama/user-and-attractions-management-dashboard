@@ -2,10 +2,6 @@
 
 @mixin custom-table-theme($theme) {
 
-  table {
-    width: 100%;
-  }
-
   .mat-elevation-z8 {
     @apply shadow-none m-4 border border-lavenderMist rounded-md overflow-hidden;
   }

@@ -71,7 +71,8 @@ export class UsersService {
    * @returns Observable of deletion result
    */
   deleteUser(id: number): Observable<any> {
-    return this.coreRequest.delete(`${User.DeleteUrl}/${id}`);
+    const formData = { id: id };
+    return this.coreRequest.delete(formData, User.DeleteUrl);
   }
 
 }

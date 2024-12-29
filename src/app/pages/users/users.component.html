@@ -6,100 +6,103 @@
     </button>
   </div>
 
-  <div class="mat-elevation-z8">
-    <mat-table [dataSource]="isLoading ? skeletonData : dataSource" matSort (matSortChange)="sortData($event)"
-    [matSortActive]="sortColumn" [matSortDirection]="sortOrder">
+  <!-- Update the wrapper with proper width and scroll behavior -->
+  <div class="w-full relative">
+    <div class="overflow-x-auto w-full" style="max-width: calc(100vw - 32px);">
+      <div class="mat-elevation-z8 min-w-[1000px]">
+        <mat-table [dataSource]="isLoading ? skeletonData : dataSource" matSort (matSortChange)="sortData($event)"
+        [matSortActive]="sortColumn" [matSortDirection]="sortOrder">
 
-      <!-- Avatar Column -->
-      <ng-container matColumnDef="avatar" [sticky]="false">
-        <mat-header-cell *matHeaderCellDef class="!w-40 !max-w-40"> Avatar </mat-header-cell>
-        <mat-cell *matCellDef="let user" class="!w-40 !max-w-40">
-          @if (!isLoading) {
-            <img [src]="user.avatar" alt="user avatar" class="w-10 h-10 rounded-full" loading="lazy">
-            } @else {
-            <div class="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>
-            }
-        </mat-cell>
-      </ng-container>
+          <!-- Avatar Column -->
+          <ng-container matColumnDef="avatar" [sticky]="false">
+            <mat-header-cell *matHeaderCellDef class="!w-40 !max-w-40"> Avatar </mat-header-cell>
+            <mat-cell *matCellDef="let user" class="!w-40 !max-w-40">
+              @if (!isLoading) {
+                <img [src]="user.avatar" alt="user avatar" class="w-10 h-10 rounded-full" loading="lazy">
+                } @else {
+                <div class="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>
+                }
+            </mat-cell>
+          </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-form-field class="search-input max-w-40">
-            <input matInput [ngModel]="nameSearch" (ngModelChange)="onSearchChange($event)" placeholder="Name">
-            <div matSuffix class="flex items-center gap-2">
-              <div>
-                <mat-icon>search</mat-icon>
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-form-field class="search-input max-w-40">
+                <input matInput [ngModel]="nameSearch" (ngModelChange)="onSearchChange($event)" placeholder="Name">
+                <div matSuffix class="flex items-center gap-2">
+                  <div>
+                    <mat-icon>search</mat-icon>
+                  </div>
+                  <div mat-sort-header="name" arrowPosition="after">
+                    <mat-icon>sort_by_alpha</mat-icon>
+                  </div>
+                </div>
+              </mat-form-field>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let user">
+              @if (!isLoading) {
+                {{user.fname + ' ' + user.lname}}
+                } @else {
+                <div class="h-4 bg-gray-200 rounded w-32 animate-pulse"></div>
+                }
+            </mat-cell>
+          </ng-container>
+
+          <!-- Username Column -->
+          <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="username"> Username </mat-header-cell>
+            <mat-cell *matCellDef="let user">
+              @if (!isLoading) {
+                {{user.username}}
+                } @else {
+                <div class="h-4 bg-gray-200 rounded w-24 animate-pulse"></div>
+                }
+            </mat-cell>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef class="!w-20 !max-w-20 justify-center"></mat-header-cell>
+            <mat-cell *matCellDef="let user" class="!w-20 !max-w-20 justify-center">
+              @if (!isLoading) {
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu class="-mt-5" #menu="matMenu">
+                  <button mat-menu-item (click)="editUser(user)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item (click)="confirmDelete(user)">
+                    <mat-icon class="!text-cardinal">delete</mat-icon>
+                    <span class="text-cardinal">Delete</span>
+                  </button>
+                </mat-menu>
+                } @else {
+                <div class="h-8 w-8 bg-gray-200 rounded-full animate-pulse"></div>
+                }
+            </mat-cell>
+          </ng-container>
+
+          <!-- Header and Row Declarations -->
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+          <!-- No data row -->
+          <tr *matNoDataRow>
+            <td>
+              <div class="w-screen max-w-[100vh] min-h-[500px] flex flex-col items-center justify-center">
+                <img src="assets/images/empty-data.png" alt="No data" class="w-64">
+                <span class="text-cardinal font-medium text-base mt-4">No data matching the filter</span>
               </div>
-              <div mat-sort-header="name" arrowPosition="after">
-                <mat-icon>sort_by_alpha</mat-icon>
-              </div>
-            </div>
-          </mat-form-field>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let user">
-          @if (!isLoading) {
-            {{user.fname + ' ' + user.lname}}
-            } @else {
-            <div class="h-4 bg-gray-200 rounded w-32 animate-pulse"></div>
-            }
-        </mat-cell>
-      </ng-container>
-
-      <!-- Username Column -->
-      <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header="username"> Username </mat-header-cell>
-        <mat-cell *matCellDef="let user">
-          @if (!isLoading) {
-            {{user.username}}
-            } @else {
-            <div class="h-4 bg-gray-200 rounded w-24 animate-pulse"></div>
-            }
-        </mat-cell>
-      </ng-container>
-
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef class="!w-20 !max-w-20 justify-center"></mat-header-cell>
-        <mat-cell *matCellDef="let user" class="!w-20 !max-w-20 justify-center">
-          @if (!isLoading) {
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu class="-mt-5" #menu="matMenu">
-              <button mat-menu-item (click)="editUser(user)">
-                <mat-icon>edit</mat-icon>
-                <span>Edit</span>
-              </button>
-              <button mat-menu-item (click)="deleteUser(user)">
-                <mat-icon class="!text-cardinal">delete</mat-icon>
-                <span class="text-cardinal">Delete</span>
-              </button>
-            </mat-menu>
-            } @else {
-            <div class="h-8 w-8 bg-gray-200 rounded-full animate-pulse"></div>
-            }
-        </mat-cell>
-      </ng-container>
-
-      <!-- Header and Row Declarations -->
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-      <!-- No data row -->
-      <tr *matNoDataRow>
-        <td>
-          <div class="w-screen max-w-[100vh] min-h-[500px] flex flex-col items-center justify-center">
-            <img src="assets/images/empty-data.png" alt="No data" class="w-64">
-            <span class="text-cardinal font-medium text-base mt-4">No data matching the filter</span>
-          </div>
-        </td>
-      </tr>
-    </mat-table>
-
-    <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-      [showFirstLastButtons]="true" (page)="pageEvent($event)" aria-label="Select page">
-    </mat-paginator>
-
+            </td>
+          </tr>
+        </mat-table>
+        <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+          [showFirstLastButtons]="true" (page)="pageEvent($event)" aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
   </div>
 </app-container>

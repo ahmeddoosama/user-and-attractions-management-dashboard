@@ -14,6 +14,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
 
 const MODULES = [FormsModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatMenuModule];
 const COMPONENTS = [ContainerComponent];
@@ -53,7 +60,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private notification: NotificationService,
-    private paginatorIntl: MatPaginatorIntl
+    private paginatorIntl: MatPaginatorIntl,
+    private dialog: MatDialog
   ) {
     this.paginatorIntl.itemsPerPageLabel = 'Items per page:';
 
@@ -136,8 +144,37 @@ export class UsersComponent implements OnInit {
     console.log(user);
   }
 
+  confirmDelete(user: IUser): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete User',
+        message: 'Are you sure you want to delete this user?',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.deleteUser(user);
+      }
+    });
+  }
+
   deleteUser(user: IUser): void {
-    console.log(user);
+    this.isLoading = true;
+    this.usersService.deleteUser(user.id).pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    ).subscribe({
+      next: () => {
+        this.notification.success(`${user.fname} ${user.lname} deleted successfully`);
+        this.getUsers();
+      },
+      error: (error) => {
+        const errorMessage = error?.error?.message;
+        this.notification.error(errorMessage);
+      }
+    });
   }
 
   onSearchChange(value: string): void {

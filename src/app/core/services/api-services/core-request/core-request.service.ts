@@ -116,19 +116,30 @@ export class CoreRequestService {
   /**
    * delete
    * @function [delete http request]
-   * @param {Object} path [Optional path to delete request]
-   * @param {Any} data [Optional data to deleted by]
-   * @return outPut request
+   * @param {Any} formData [payload data for delete request]
+   * @param {String} path [Optional path to delete request]
+   * @param {Object} dataSearch [Optional query parameters]
+   * @param {Any} reqHeaders [Optional request headers]
+   * @param {String} responseCustomType [Optional response type]
+   * @return Observable request
    */
-  public delete(path?: string, dataSearch?: any) {
+  public delete(
+    formData: any,
+    path?: string,
+    dataSearch?: any,
+    reqHeaders?: any,
+    responseCustomType?: string
+  ): Observable<any> {
     const url = `${this.baseUrl}${path}`;
 
     const options: any = {
+      headers: reqHeaders,
       observe: 'body',
       params: new HttpParams({ fromObject: dataSearch }),
       reportProgress: false,
-      responseType: 'json',
+      responseType: responseCustomType ? responseCustomType : 'json',
       withCredentials: false,
+      body: formData
     };
 
     return this.http.delete(url, options);

@@ -2,8 +2,9 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { FooterComponent, HeaderComponent, SidebarComponent } from './layout';
 import { filter, Subject, takeUntil } from 'rxjs';
+import { UsersComponent } from '@pages/users/users.component';
 
-const COMPONENTS = [HeaderComponent, SidebarComponent, FooterComponent];
+const COMPONENTS = [HeaderComponent, SidebarComponent, FooterComponent, UsersComponent];
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'] as const;
 
 @Component({

@@ -8,3 +8,11 @@
     font-size: 24px !important;
   }
 }
+
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 100% !important;
+  @media (min-width: 768px) {
+    min-width: 400px !important;
+  }
+  min-height: 200px !important;
+}
