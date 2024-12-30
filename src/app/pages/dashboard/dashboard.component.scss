@@ -1,0 +1,7 @@
+:host {
+  @media (max-width: 768px) {
+    canvas {
+      width: 100% !important;
+    }
+  }
+}

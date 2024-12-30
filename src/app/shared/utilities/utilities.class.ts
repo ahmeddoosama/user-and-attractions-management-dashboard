@@ -29,4 +29,13 @@ export class Utilities {
     input = String.fromCharCode(key);
     return /^[0-9]+$/.test(input);
   }
+
+  /**
+   * Generates a random RGB color string
+   * Used as fallback when a predefined color is not available for a pet type
+   * @returns Random RGB color string in the format 'rgb(r, g, b)'
+   */
+  public getRandomColor(): string {
+    return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+  }
 }
