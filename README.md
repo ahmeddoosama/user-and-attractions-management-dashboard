@@ -7,7 +7,7 @@ A comprehensive dashboard application built with Angular 17 for managing Users, 
 This application provides a robust management system for handling user data and attractions, featuring interactive data visualization, complete CRUD operations, and a responsive design optimized for all devices.
 
 ## Live Demo
-[[Demo Link](https://ahmeddoosama.github.io/user-and-attractions-management-dashboard)]
+[Demo Link](https://ahmeddoosama.github.io/user-and-attractions-management-dashboard)
 
 ## Key Features
 
@@ -149,5 +149,5 @@ ng build --configuration production
 
 ## Contact
 
-Ahmed Osama Bedawy - [@linkedin](https://www.linkedin.com/in/ahmeddoosama/)
-Project Link: [https://github.com/ahmeddoosama/user-and-attractions-management-dashboard](https://github.com/ahmeddoosama/user-and-attractions-management-dashboard)
+- Ahmed Osama Bedawy - [@linkedin](https://www.linkedin.com/in/ahmeddoosama/)
+- Project Link: [https://github.com/ahmeddoosama/user-and-attractions-management-dashboard](https://github.com/ahmeddoosama/user-and-attractions-management-dashboard)
