@@ -1,0 +1,75 @@
+<div>
+  <div class="flex items-center justify-between py-2 px-4 border-b border-lavenderMist">
+    <div class="text-ebonyClay font-medium text-base">{{ (type === 'create') ? 'Create Attraction' : 'Update Attraction' }}</div>
+    <button mat-icon-button class="close-icon" (click)="onCancel()" [disabled]="isLoading">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="px-4 py-6">
+    <form class="w-full md:w-96 flex flex-col items-center justify-center" [formGroup]="form">
+
+      <mat-form-field class="w-full">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Enter your name">
+        @if (form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)) {
+        <mat-error>
+          @if (form.get('name')?.errors?.['required']) {
+          <span>Name is required</span>
+          } @else if (form.get('name')?.errors?.['minlength']) {
+          <span>Name must be at least 2 characters</span>
+          } @else if (form.get('name')?.errors?.['maxlength']) {
+          <span>Name must be at most 100 characters</span>
+          }
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="w-full text-area-field">
+        <mat-label>Detail</mat-label>
+        <textarea matInput formControlName="detail" placeholder="Enter your detail"></textarea>
+        @if (form.get('detail')?.invalid && (form.get('detail')?.dirty || form.get('detail')?.touched)) {
+        <mat-error>
+          @if (form.get('detail')?.errors?.['required']) {
+          <span>Detail is required</span>
+          }
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <div class="flex flex-col md:flex-row md:gap-4 w-full">
+        <mat-form-field class="w-full">
+          <mat-label>Latitude</mat-label>
+          <input matInput type="text" formControlName="latitude" placeholder="Enter your latitude" (keypress)="_keyPress($event)">
+          @if (form.get('latitude')?.invalid && (form.get('latitude')?.dirty || form.get('latitude')?.touched)) {
+          <mat-error>
+            @if (form.get('latitude')?.errors?.['required']) {
+            <span>Latitude is required</span>
+            }
+          </mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Longitude</mat-label>
+          <input matInput type="text" formControlName="longitude" placeholder="Enter your longitude" (keypress)="_keyPress($event)">
+          @if (form.get('longitude')?.invalid && (form.get('longitude')?.dirty || form.get('longitude')?.touched)) {
+          <mat-error>
+            @if (form.get('longitude')?.errors?.['required']) {
+            <span>Longitude is required</span>
+            }
+          </mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="flex items-center justify-end gap-4 py-4 px-6 border border-t border-lavenderMist">
+    <button mat-raised-button class="discard-button" (click)="onCancel()" [disabled]="isLoading">Cancel</button>
+    <button mat-raised-button class="confirm-button" (click)="onSubmit()" [disabled]="form.invalid || isLoading">
+      @if (isLoading) {
+      <mat-spinner class="form-spinner" strokeWidth="10"></mat-spinner>
+      } @else {
+      {{ (type === 'create') ? 'Create' : 'Update' }}
+      }
+    </button>
+  </div>
+</div>
