@@ -9,6 +9,9 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { httpTokenInterceptor } from '@core/interceptors/http-token/http-token.interceptor';
 import { httpErrorInterceptor } from '@core/interceptors/http-error/http-error.interceptor';
 import { StorageService } from '@core/services/app-services/storage/storage.service';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -55,7 +55,9 @@ module.exports = {
       },
       boxShadow: {
         'card': '0px 2px 4px -2px #10182805',
-        'container': 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'
+        'container': 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px',
+        'chart': 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+        'chart-hover': 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
       },
       height: {
         'screen-minus-20': 'calc(100vh - 5rem)'
