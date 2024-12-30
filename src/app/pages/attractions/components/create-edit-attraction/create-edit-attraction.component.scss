@@ -1,0 +1,17 @@
+:host {
+  ::ng-deep {
+    .text-area-field {
+      .mdc-text-field--filled {
+        max-height: 150px;
+        min-height: 100px !important;
+      }
+    }
+    .form-spinner {
+      width: 20px !important;
+      height: 20px !important;
+    }
+    .form-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+      @apply stroke-secondary;
+    }
+  }
+}
