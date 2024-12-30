@@ -1,0 +1,1 @@
+var o=class{validateNumericInput(a){let e,t=a,r=t.keyCode||t.which;return t.metaKey||t.ctrlKey||r===37||r===38||r===39||r===40||r===8||r===46||r===9||r===45?!0:(e=String.fromCharCode(r),/^[0-9]+$/.test(e))}getRandomColor(){return`rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`}};export{o as a};

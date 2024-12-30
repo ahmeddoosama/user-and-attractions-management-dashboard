@@ -1,0 +1,1 @@
+import{Ab as o,Bb as i,Tb as r,Yb as a,la as n}from"./chunk-RF7UUZCQ.js";var f=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=n({type:e,selectors:[["app-admin-profile"]],standalone:!0,features:[a],decls:2,vars:0,template:function(t,p){t&1&&(o(0,"p"),r(1,"admin-profile works!"),i())}})}}return e})();export{f as AdminProfileComponent};
